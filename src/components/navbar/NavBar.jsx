@@ -79,7 +79,7 @@ const NavBar = () => {
                 <div className={`sidebar ${toggle ? "open" : ""}`}>
                     <div className="p-10">
                         <div className="flex justify-between items-end mb-10">
-                            <Link href={'/'}><img alt="logo" width={110} height={'auto'} src={`/`} /></Link>
+                            <Link href={'/'}><img alt="logo"  width={110} height={'auto'} src={logo} /></Link>
                             <h1
                                 className="cursor-pointer p-1 px-3 rounded-full bg-primary-500 font-semibold text-white-300"
                                 onClick={() => setToggle(false)}
