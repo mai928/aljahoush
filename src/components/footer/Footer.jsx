@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assets/logo1.png'
+import logo from '../../assets/logo22.png'
 import { navlinks } from '../../../data'
 import { Link } from 'react-router-dom'
 import footer2 from '../../assets/footer2.png'
