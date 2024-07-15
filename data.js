@@ -3,6 +3,7 @@ import slider2 from "./src/assets/slider2.jpg";
 
 import service1 from "./src/assets/service1.png";
 import service2 from "./src/assets/services2.png";
+import video1 from "./public/videos/video1.mp4"
 
 export const navlinks = [
 	{
@@ -242,7 +243,7 @@ export const Productgallery = [
 ];
 
 export const videoSources = [
-	{ src: "./src/assets/video1.mp4", type: "video/mp4" },
-	{ src: "./src/assets/video1.mp4", type: "video/mp4" },
-	{ src: "./src/assets/video1.mp4", type: "video/mp4" },
+	{ src: video1, type: "video/mp4" },
+	{ src: video1, type: "video/mp4" },
+	{ src: video1, type: "video/mp4" },
 ];
