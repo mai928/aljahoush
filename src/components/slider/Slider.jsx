@@ -7,9 +7,12 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { sliderData } from '../../../data';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 const Slider = () => {
+
+    const { i18n } = useTranslation()
 
     const [show, setShow] = useState(false)
 
@@ -21,7 +24,8 @@ const Slider = () => {
 
             <Swiper
                 className="static"
-
+                dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+                key={i18n.language}
                 loop={true}
                 autoplay={{ delay: 5000 }}
                 effect="fade"
@@ -36,15 +40,15 @@ const Slider = () => {
 
                 <>
 
-                    <div className={`swiper-button-next  text-white ${show ? 'opacity-100' : 'opacity-0'}`}></div>
-                    <div className={`swiper-button-prev text-white  ${show ? 'opacity-100' : 'opacity-0'}`}></div>
+                    <div className={`swiper-button-next  text-white  ${show ? 'opacity-100' : 'opacity-0'}`}></div>
+                    <div className={`swiper-button-prev text-white ${show ? 'opacity-100' : 'opacity-0'} `}></div>
 
                 </>
                 {
                     sliderData.map((slide, index) => (
                         <SwiperSlide key={index} className="swiper-slide relative">
                             <div className='relative'>
-                                <img className='w-full h-[70vb] lg:h-[130vb]' alt='img' src={slide.img} />
+                                <img className='w-full h-[70vb] lg:h-[130vb]' loading='eager' alt='img' src={slide.img} />
                                 <div className='absolute top-0 bottom-0 right-0 left-0 bg-black bg-opacity-40'></div>
 
                             </div>

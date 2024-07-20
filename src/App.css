@@ -13,12 +13,20 @@
   transform: rotate(-0.3deg);
 }
 
-.swiper-button-next {
+[dir=ltr] .swiper-button-next {
   right: 30px !important;
 }
 
-.swiper-button-prev {
+[dir=ltr] .swiper-button-prev {
   left: 30px !important;
+}
+
+[dir=rtl] .swiper-button-next {
+  left: 40px !important;
+}
+
+[dir=rtl] .swiper-button-prev {
+  right: 40px !important;
 }
 
 .swiper-button-prev:after,
@@ -80,7 +88,7 @@ figcaption {
 }
 
 
-input{
+input {
   outline: none;
-  
+
 }

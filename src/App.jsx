@@ -9,20 +9,31 @@ import Service from './pages/service/Service'
 import Products from './pages/product/Products'
 import ContactUs from './pages/contact/ContactUs'
 import Video from './pages/video/Video'
+import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+
+
 function App() {
+
+  const { i18n } = useTranslation()
+
+
+  useEffect(() => {
+    document.body.setAttribute('dir', i18n.language === 'ar' ? 'rtl' : 'ltr')
+  }, [i18n.language])
 
   return (
     <BrowserRouter>
-    <NavBar/>
+      <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/services' element={<Service/>} />
-        <Route path='/products' element={<Products/>} />
-        <Route path='/videos' element={<Video/>} />
-        <Route path='/contact' element={<ContactUs/>} /> 
+        <Route path='/services' element={<Service />} />
+        <Route path='/products' element={<Products />} />
+        <Route path='/videos' element={<Video />} />
+        <Route path='/contact' element={<ContactUs />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   )
 }

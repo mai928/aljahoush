@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { navlinks } from '../../../data'
 import logo from '../../assets/logo2.png'
+import LanguageSwitcher from '../../languages/LanguageSwitcher'
+import { useTranslation } from 'react-i18next'
+
 
 const NavBar = () => {
+
+    const { t } = useTranslation()
     const [toggle, setToggle] = useState(false)
     const [showmenuIcon, setshowmenuIcon] = useState(false)
 
@@ -53,13 +58,16 @@ const NavBar = () => {
                                 <ul className='flex'> {
                                     navlinks.map((navlink, index) => (
                                         <li className='ms-10  ' key={index} >
-                                            <Link to={navlink.path} className='text-color_heading hover:text-secondary_color cursor-pointer font-[700] text-[18px] font-Outfit '>{navlink.name}</Link>
+                                            <Link to={navlink.path} className='text-color_heading hover:text-secondary_color cursor-pointer font-[700] text-[18px] font-Outfit '>{t(navlink.name)}</Link>
                                         </li>
                                     ))
                                 }
                                 </ul>
 
-                                <Link to={'/'} className='px-11 py-2 my-1  cursor-pointer  rounded-full border-primary_color border-solid border-2    text-color_heading font-[700] text-[18px] font-Outfit'>english</Link>
+                                <div className='px-11 py-2 my-1  cursor-pointer  rounded-full border-primary_color border-solid border-2    text-color_heading font-[700] text-[18px] font-Outfit'>
+                                    <LanguageSwitcher />
+
+                                </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width={20} viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} fill='#1f4e3d' viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" /></svg>

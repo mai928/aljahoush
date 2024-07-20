@@ -6,12 +6,12 @@ import footer2 from '../../assets/footer2.png'
 
 const Footer = () => {
     return (
-        <section className='bg-dark_Green z-50   background-img lg:pt-20 pb-40 px-10  lg:px-24'>
+        <section className='bg-dark_Green z-50   background-img pt-10 lg:pt-20 pb-40 px-10  lg:px-24'>
             <div className='block text-center lg:text-start lg:flex lg:mt-20'>
 
 
                 <div className='lg:w-1/3 '>
-                    <img className=' w-44  m-auto lg:m-0 filter brightness-0 invert-[1]' src={logo} />
+                    <img className=' w-52  m-auto lg:m-0 filter brightness-0 invert-[1]' src={logo} />
                     <p className='text-white font-Outfit my-4 l:my-10'>Happen active county. Winding morning ambition shyness evident to poor. Because elderly new to the point to main success.</p>
                     <form className='relative flex items-center'>
                         <input className='py-5 px-10 w-full rounded-full  block' placeholder='Your Email' />
