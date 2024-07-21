@@ -119,7 +119,7 @@ const NavBar = () => {
                                             to={item.path}
                                             onClick={() => setToggle(false)}
                                         >
-                                            {(item.name)}
+                                            {t(item.name)}
                                         </Link>
                                     </li>
                                 </div>
@@ -127,7 +127,7 @@ const NavBar = () => {
                             ))}
                         </ul>
 
-                        {/* <div className="flex items-center mt-7">
+                        <div className="flex items-center mt-7">
                             <div className="p-1 bg-white-400 rounded-full me-4">
                                 <svg
 
@@ -143,12 +143,11 @@ const NavBar = () => {
 
                             </div>
                             <div className="border-[1px] border-gray-400 rounded-lg p-2">
-                                <LanguageChanger />
-
+                                <LanguageSwitcher />
                             </div>
 
 
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

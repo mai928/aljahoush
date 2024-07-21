@@ -1,3 +1,8 @@
 {
-    "Home":"Home"
+    "Home":"Home",
+    "About":"About",
+    "Services":"Services",
+    "Products":"Products",
+    "Videos":"Videos",
+    "Contact Us":"Contact Us"
 }

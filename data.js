@@ -27,7 +27,7 @@ export const navlinks = [
 	},
 	{
 		path: "/contact",
-		name: "Contact",
+		name: "Contact Us",
 	},
 ];
 

@@ -3,8 +3,10 @@ import logo from '../../assets/logo22.png'
 import { navlinks } from '../../../data'
 import { Link } from 'react-router-dom'
 import footer2 from '../../assets/footer2.png'
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
+    const {t}=useTranslation()
     return (
         <section className='bg-dark_Green z-50   background-img pt-10 lg:pt-20 pb-40 px-10  lg:px-24'>
             <div className='block text-center lg:text-start lg:flex lg:mt-20'>
@@ -62,7 +64,7 @@ const Footer = () => {
                         {
                             navlinks.map((link) => (
                                 <li className='text-slate-200 font-Outfit my-4 text-[17px] font-semibold'>
-                                    <Link to={link.path}>{link.name}</Link>
+                                    <Link to={link.path}>{t(link.name)}</Link>
                                 </li>
                             ))
                         }
