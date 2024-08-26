@@ -24,11 +24,11 @@ useEffect(() => {
 }, [i18n.language])
 
 
-const images = Productgallery.slice(0, 11).map((image) => ({
+const images = Productgallery?.slice(0, 11)?.map((image) => ({
     src:image?.photo,
     customOverlay: (
         <div className="custom-overlay__caption">
-            <div className='text-2xl font-bold'>{image.caption}</div>
+            {/* <div className='text-2xl font-bold'>{image?.caption}</div> */}
         </div>
     ),
 }));
