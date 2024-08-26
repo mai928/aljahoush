@@ -4,10 +4,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+// import "swiper/css/effect-fade";
+import 'swiper/css/autoplay'
+
 import { Link } from 'react-router-dom';
 import { services } from '../../../data';
 import DOMPurify from 'dompurify';
+import { fetchApi } from '../../utils/api';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -17,6 +21,7 @@ const Services = () => {
         return text?.split(' ').slice(0, wordCount).join(' ') + '...';
     };
 
+    const { t, i18n } = useTranslation()
 
     const [isHover, setHovered] = useState(false);
     const [Id, setID] = useState("");
@@ -50,15 +55,28 @@ const Services = () => {
     };
 
 
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
+    // const [data, setData] = useState(null);
+    // const [error, setError] = useState(null);
 
 
+    // api/services
+
+    const [services, setData] = useState([])
+
+    useEffect(() => {
+        const fetchDataSlider = async () => {
+            const res = await fetchApi('api/services', i18n.language)
+            const service = res?.data
+            setData(service)
+        }
+
+        fetchDataSlider()
+    }, [i18n.language])
 
 
 
     return (
-        <section className="py-10 lg:py-12 px-5 lg:px-20 ">
+        <section className="py-10 lg:py-12 px-5 lg:px-20  bg-gray-100">
             <div>
                 <div className="py-5 text-center ">
                     <div className="flex  justify-center items-center mb-3">
@@ -74,22 +92,24 @@ const Services = () => {
                 </div>
 
                 <Swiper
+                 dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+                 key={i18n.language}
+                    modules={[Navigation, Autoplay, Pagination]}
                     slidesPerView={4}
                     breakpoints={breakpoints}
-                    autoplay={{ delay: 4000 }}
+                    autoplay={{ delay: 2000 }}
                     loop={true}
-                    modules={[Navigation, Autoplay, Pagination]}
-
+                    speed={1000}
                 >
                     <div>
                         {services?.map((item, index) => (
                             <SwiperSlide key={index} className=" mt-5">
 
                                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                                    <div className="p-6">
-                                        <img className='w-56 rounded-md' alt={'img'} src={item.src} />
-                                        <h2 className="text-xl font-bold font-Outfit  mb-2 mt-4">{item.title}</h2>
-                                        <div className="text-paragraph_color text-base font-Outfit font-[500] mb-4" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize((truncateText(item.desc, 20))) }} />
+                                    <img className='w-full h-64 object-cover rounded-md' alt={'img'} src={item?.photo} />
+                                    <div className="p-3">
+                                        <h2 className="text-xl font-bold font-Outfit  mb-2 mt-4">{t(item.title)}</h2>
+                                        <div className="text-paragraph_color text-base font-Outfit font-[500] mb-4" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t(truncateText(item?.details || '', 20))) }} />
 
                                         {/* ${encodeURIComponent(item.slug) */}
                                         <Link to={`/services/}`} className={''} >

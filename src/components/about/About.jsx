@@ -1,22 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../assets/logo.jpeg'
 import img2 from '../../assets/2.png'
 import img3 from '../../assets/3.png'
+import { fetchApi } from '../../utils/api'
+import { useTranslation } from 'react-i18next'
+import DOMPurify from 'dompurify'
 
 const About = () => {
+
+    const { t, i18n } = useTranslation()
+    const [About, setData] = useState()
+
+    useEffect(() => {
+        const fetchDataSlider = async () => {
+            const res = await fetchApi('api/about-us', i18n.language)
+            const aboutData = res?.data
+            setData(aboutData)
+        }
+
+        fetchDataSlider()
+    }, [i18n.language])
+
+
     return (
         <section className='px-10 lg:px-16 py-20'>
             <div className=' block lg:flex gap-24 '>
-                <div>
-                    <img className='rounded-lg lg:rounded-tl-[15rem] lg:rounded-br-[15rem]' alt='img' src={logo} />
+                <div className='lg:w-[50%]'>
+                    <img className='rounded-lg lg:rounded-tl-[15rem] lg:rounded-br-[15rem]' alt='img' src={About?.photo} />
                 </div>
-                <div className='lg:mt-20 text-center lg:text-start'>
-                    <h2 className='text-color_heading text-xl lg:text-5xl lg:leading-[3.5rem]  font-bold font-Outfit my-10'>Agriculture & Organic
-                        Product Farm</h2>
-                    <p className='text-gray-500 font-[500] font-Outfit '>
-                        There are many variations of passages of ipsum available but the majority have suffered alteration in some form by injected humor or random word which don’t look even. Comparison new ham melancholy.</p>
+                <div className='lg:w-[50%] lg:mt-20 text-center lg:text-start'>
+                    <h2 className='text-color_heading text-xl lg:text-5xl lg:leading-[3.5rem]  font-bold font-Outfit my-10'>{t(About?.title)}</h2>
 
-                    <div className=' block lg:flex  gap-5 mt-5'>
+
+                    <div className='text-gray-500 font-[500] font-Outfit ' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t(About?.details)) }} />
+
+                    {/* <div className=' block lg:flex  gap-5 mt-5'>
                         <div className='w-full  lg:h-72 rounded-lg bg-primary_color px-14 pt-10 pb-10'>
                             <img alt='img' className='w-16' src={img2} />
                             <h3 className='font-Outfit lg:text-xl font-semibold mt-4'>100% Guaranteed Organic Product</h3>
@@ -30,7 +48,7 @@ const About = () => {
                                 Majority have suffered alteration in some form by injected humor.</p>
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
