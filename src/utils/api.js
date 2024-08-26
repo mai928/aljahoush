@@ -1,18 +1,23 @@
 export const fetchApi = async (variable, lang) => {
-	try {
-		const response = await fetch(
-			`http://api.aljahoush.com/${variable}`,
-			{
-				headers: {
-					"Cookie": "laravel_session=lCNcI9HCTjVRUPHraSY08hbicraUMWfaT4z2EDW9",
-					"Accept-Language": lang,
-				},
-				method: "GET",
-			},
-		);
-		const data = response.json();
-		return data;
-	} catch (error) {
-		console.log("failed :::", error);
-	}
+    try {
+        const response = await fetch(
+            `https://api.aljahoush.com/${variable}`,
+            {
+                headers: {
+                    "Accept-Language": lang,
+                },
+                method: "GET",
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Failed to fetch data:", error);
+        throw error; // Optionally rethrow to be handled by the caller
+    }
 };
