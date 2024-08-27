@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SeperatedForm from '../seperatedForm/SeperatedForm'
+import { fetchApi } from '../../utils/api'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const Contact = () => {
+
+   const {t ,i18n}=useTranslation()
+    const [settingsData, setSettings] = useState('')
+
+
+
+    useEffect(() => {
+
+        const setting = async () => {
+            const res = await fetchApi('api/settings', i18n.language)
+            const settingData = res?.data
+            console.log(settingData)
+            setSettings(settingData)
+        }
+
+        setting()
+    }, [i18n.language])
+
     return (
         <section className=' p-3 lg:py-20 lg:px-20 '>
 
@@ -27,7 +48,14 @@ const Contact = () => {
 
                                 </svg>        </div>
                             {/* {data?.email} */}
-                            <p className="text-white lg:text-base font-Outfit">mmm@gmail.com</p>
+                            <div>
+                                {
+                                    settingsData?.emails?.map((item)=>{
+                                        <Link to={`mailto:${item}`} className=" block text-white lg:text-base font-Outfit"></Link>
+
+                                    })
+                                }
+                            </div>
 
                         </div>
 

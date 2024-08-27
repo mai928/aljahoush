@@ -21,6 +21,10 @@ const About = () => {
         fetchDataSlider()
     }, [i18n.language])
 
+    const  content = DOMPurify.sanitize(t(About?.details),{
+        ALLOWED_TAGS:['b','i','strong','p','br']
+    })
+
 
     return (
         <section className='px-10 lg:px-16 py-20'>
@@ -32,7 +36,7 @@ const About = () => {
                     <h2 className='text-color_heading text-xl lg:text-5xl lg:leading-[3.5rem]  font-bold font-Outfit my-10'>{t(About?.title)}</h2>
 
 
-                    <div className='text-gray-500 font-[500] font-Outfit ' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t(About?.details)) }} />
+                    <div className='text-gray-500 font-[500] font-Outfit ' dangerouslySetInnerHTML={{ __html:content }} />
 
                     {/* <div className=' block lg:flex  gap-5 mt-5'>
                         <div className='w-full  lg:h-72 rounded-lg bg-primary_color px-14 pt-10 pb-10'>
