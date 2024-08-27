@@ -22,8 +22,12 @@ const About = () => {
     }, [i18n.language])
 
     const  content = DOMPurify.sanitize(t(About?.details),{
-        ALLOWED_TAGS:['b','i','strong','p','br']
+        ALLOWED_TAGS:['b','i','strong','p','br'],
+        ALLOWED_ATTR: ['href', 'target'], // Allow only specific attributes like href for links
+
     })
+
+    console.log(content)
 
 
     return (
