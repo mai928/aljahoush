@@ -21,6 +21,10 @@ const About = () => {
         fetchDataSlider()
     }, [i18n.language])
 
+
+    function removeEmptyPTags(str) {
+        return str?.replace(/<\/?(em|p|br|ul|li|a|span|strong|u)[^>]*>|&nbsp;/g, '');
+      }
     const  content = DOMPurify.sanitize(t(About?.details),{
         ALLOWED_TAGS:['b','i','strong','p','br'],
         ALLOWED_ATTR: ['href', 'target'], // Allow only specific attributes like href for links
@@ -40,7 +44,7 @@ const About = () => {
                     <h2 className='text-color_heading text-xl lg:text-5xl lg:leading-[3.5rem]  font-bold font-Outfit my-10'>{t(About?.title)}</h2>
 
 
-                    <div className='text-gray-500 font-[500] font-Outfit ' dangerouslySetInnerHTML={{ __html:content }} />
+                    <div className='text-gray-500 font-[500] font-Outfit ' dangerouslySetInnerHTML={{ __html: removeEmptyPTags(content) }} />
 
                     {/* <div className=' block lg:flex  gap-5 mt-5'>
                         <div className='w-full  lg:h-72 rounded-lg bg-primary_color px-14 pt-10 pb-10'>
