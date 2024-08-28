@@ -30,7 +30,6 @@ const About = () => {
         return str?.replace(/<\/?(em|p|br|ul|li|a|span|strong|u)[^>]*>|&nbsp;/g, '');
       }
 
-      console.log("sanitizedContent:::",sanitizedContent)
   return (
     <section className='px-10 lg:px-16 py-20'>
     <div className=' block lg:flex gap-24 '>

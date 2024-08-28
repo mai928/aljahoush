@@ -25,13 +25,12 @@ const About = () => {
     function removeEmptyPTags(str) {
         return str?.replace(/<\/?(em|p|br|ul|li|a|span|strong|u)[^>]*>|&nbsp;/g, '');
       }
-    const  content = DOMPurify.sanitize(t(About?.details),{
-        ALLOWED_TAGS:['b','i','strong','p','br'],
-        ALLOWED_ATTR: ['href', 'target'], // Allow only specific attributes like href for links
+      const sanitizedContent = DOMPurify.sanitize(t(About?.details), {
+        ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br', 'ul', 'li', 'ol', 'span'],
+        ALLOWED_ATTR: ['href', 'target', 'style']
+    });
 
-    })
 
-    console.log(content)
 
 
     return (
@@ -44,7 +43,7 @@ const About = () => {
                     <h2 className='text-color_heading text-xl lg:text-5xl lg:leading-[3.5rem]  font-bold font-Outfit my-10'>{t(About?.title)}</h2>
 
 
-                    <div className='text-gray-500 font-[500] font-Outfit ' >{removeEmptyPTags(t(About?.details))}</div>
+                    <div className='text-gray-500 font-[500] font-Outfit text-lg leading-10 ' dangerouslySetInnerHTML={{__html:sanitizedContent}}/>
 
                     {/* <div className=' block lg:flex  gap-5 mt-5'>
                         <div className='w-full  lg:h-72 rounded-lg bg-primary_color px-14 pt-10 pb-10'>

@@ -31,6 +31,8 @@ const Services = () => {
         setID(id);
     };
 
+
+
     const breakpoints = {
         1024: {
             slidesPerView: 4,
@@ -73,6 +75,14 @@ const Services = () => {
         fetchDataSlider()
     }, [i18n.language])
 
+    const sanitizedContent = DOMPurify.sanitize(t(services.details), {
+        ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br', 'ul', 'li', 'ol', 'span'],
+        ALLOWED_ATTR: ['href', 'target', 'style']
+    });
+
+
+
+
 
 
     return (
@@ -92,8 +102,8 @@ const Services = () => {
                 </div>
 
                 <Swiper
-                 dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
-                 key={i18n.language}
+                    dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+                    key={i18n.language}
                     modules={[Navigation, Autoplay, Pagination]}
                     slidesPerView={4}
                     breakpoints={breakpoints}
@@ -109,7 +119,13 @@ const Services = () => {
                                     <img className='w-full h-64 object-cover rounded-md' alt={'img'} src={item?.photo} />
                                     <div className="p-3">
                                         <h2 className="text-xl font-bold font-Outfit  mb-2 mt-4">{t(item.title)}</h2>
-                                        <div className="text-paragraph_color text-base font-Outfit font-[500] mb-4" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t(truncateText(item?.details || '', 20))) }} />
+                                        {/* truncateText(item?.details || '', 20) */}
+                                        <div className="text-paragraph_color text-base font-Outfit font-[500] mb-4" dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(t(truncateText(item.details,8)), {
+                                                ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br', 'ul', 'li', 'ol', 'span'],
+                                                ALLOWED_ATTR: ['href', 'target', 'style']
+                                            })
+                                        }} />
 
                                         {/* ${encodeURIComponent(item.slug) */}
                                         <Link to={`/services/}`} className={''} >
