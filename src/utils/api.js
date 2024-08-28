@@ -1,14 +1,13 @@
 export const fetchApi = async (variable, lang) => {
 
     const myHeaders = new Headers();
-    myHeaders.append("Accept-Language", "en");
+    myHeaders.append("Accept-Language", lang);
     myHeaders.append("Cookie", "laravel_session=6oM3FFaszfcS2bV3nWtBQrSNpkdvu3BvQxhRc6h0");
 
     const requestOptions = {
         method: "GET",
         headers: myHeaders,
         redirect: "follow",
-        lang:lang
     };
     try {
         const response = await fetch(
@@ -31,15 +30,20 @@ export const fetchApi = async (variable, lang) => {
 
 
 export const fetchPostApi = async (variable, lang) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Accept-Language", lang); // Set the language dynamically
+    myHeaders.append("Cookie", "laravel_session=6oM3FFaszfcS2bV3nWtBQrSNpkdvu3BvQxhRc6h0");
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        redirect: "follow",
+    };
     try {
         const response = await fetch(
-            `https://api.aljahoush.com/${variable}`,
-            {
-                headers: {
-                    "Accept-Language": lang,
-                },
-                method: "POST",
-            }
+            `https://api.aljahoush.com/${variable}`,requestOptions
+           
         );
 
         if (!response.ok) {
