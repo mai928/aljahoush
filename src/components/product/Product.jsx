@@ -22,12 +22,7 @@ const Product = () => {
 
     }, [i18n.language])
 
-    // setData(service)
-
-
-
-
-    console.log(Productgallery)
+   
 
 
     // Ensure that images are correctly formatted and have all necessary properties
@@ -52,7 +47,9 @@ const Product = () => {
             </div>
 
             {/* <Gallery onSelect={false}  images={images} /> */}
-            <ImageGallery imagesInfoArray={images} columnWidth={240} gapSize={10}  />
+            {/* <ImageGallery imagesInfoArray={images} columnWidth={240} gapSize={10}  /> */}
+            <ImageGallery  imagesInfoArray={images} columnWidth={`md:${300} lg:${500} xl:${600}`} columnCount={3} gapSize={10} />
+
             <div className='m-auto text-center my-10 '>
                 <Link to={'/products'} className=' bg-primary_color hover:bg-secondary_color hover:text-white  text-xl  px-14 py-4 rounded-full font-Outfit font-semibold '>Show More</Link>
 
