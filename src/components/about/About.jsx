@@ -44,7 +44,7 @@ const About = () => {
                     <h2 className='text-color_heading text-xl lg:text-5xl lg:leading-[3.5rem]  font-bold font-Outfit my-10'>{t(About?.title)}</h2>
 
 
-                    <div className='text-gray-500 font-[500] font-Outfit ' dangerouslySetInnerHTML={{ __html: removeEmptyPTags(content) }} />
+                    <div className='text-gray-500 font-[500] font-Outfit ' >{removeEmptyPTags(t(About?.details))}</div>
 
                     {/* <div className=' block lg:flex  gap-5 mt-5'>
                         <div className='w-full  lg:h-72 rounded-lg bg-primary_color px-14 pt-10 pb-10'>
