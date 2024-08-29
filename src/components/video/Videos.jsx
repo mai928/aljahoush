@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { fetchApi } from '../../utils/api';
+import { Link } from 'react-router-dom';
 
 const Videos = () => {
     const {t , i18n}=useTranslation()
@@ -26,7 +27,7 @@ const Videos = () => {
             </div> 
                        <div className='block lg:flex flex-wrap justify-center gap-6' >
                 {
-                    videoSources.map((vid, index) => (
+                    videoSources?.slice(0,2)?.map((vid, index) => (
                         <video
                             key={index}
                             src={vid.media}
@@ -34,10 +35,14 @@ const Videos = () => {
                             autoplay={false}
                             loop={false}
                             muted={false}
-                            className='w-[350px] h-[250px]  object-cover'
+                            className='w-[500px] h-[280px]  object-cover'
                         />
                     ))
                 }
+            </div>
+            <div className='m-auto text-center my-10 '>
+                <Link to={'/videos'} className=' bg-primary_color hover:bg-secondary_color hover:text-white  text-xl  px-14 py-4 rounded-full font-Outfit font-semibold '>Show More</Link>
+
             </div>
         </section>
 

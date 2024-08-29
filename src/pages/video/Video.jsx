@@ -1,23 +1,22 @@
-import React from 'react'
-import { videoSources } from '../../../data'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
+import { fetchApi } from '../../utils/api';
 
-const VideoPlayer = ({ src, type, controls = true, autoplay = false, loop = false, muted = false, width = '100%', height = 'auto' }) => {
-    return (
-        <video
-            controls={controls}
-            autoPlay={autoplay}
-            loop={loop}
-            muted={muted}
-            width={width}
-            height={height}
-        className='mt-5'
-        >
-            <source src={src} type={type} />
-            Your browser does not support the video tag.
-        </video>
-    );
-};
 const Video = () => {
+
+    const {t , i18n}=useTranslation()
+    const [videoSources,setData]=useState([])
+
+    useEffect(()=>{
+        const fetchDataVideos = async () => {
+            const res = await fetchApi('api/videos', i18n.language)
+            const service = res?.data
+            setData(service)
+        }
+    
+        fetchDataVideos()
+    },[i18n.language])
+
   return (
     <section className='px-10 py-20'>
     <div className='text-center mb-10'><p className='text-secondary_color   font-IntoLightTw0 text-2xl lg:text-3xl'>Our Videos </p>
@@ -25,23 +24,21 @@ const Video = () => {
             Explore Awesome Videos</h3>
 
     </div> 
-               <div className='block lg:flex flex-wrap justify-center gap-6' >
-        {
-            videoSources.map((vid, index) => (
-                <VideoPlayer
-                    key={index}
-                    src={vid.src}
-                    type={vid.type}
-                    controls={true}
-                    autoplay={false}
-                    loop={false}
-                    muted={false}
-                    width="450px"
-                    height="500px"
-                />
-            ))
-        }
-    </div>
+    <div className='block lg:flex flex-wrap justify-center gap-6' >
+                {
+                    videoSources.map((vid, index) => (
+                        <video
+                            key={index}
+                            src={vid.media}
+                            controls={true}
+                            autoplay={false}
+                            loop={false}
+                            muted={false}
+                            className='w-[500px] h-[250px]  object-cover'
+                        />
+                    ))
+                }
+            </div>
 </section>
   )
 }
