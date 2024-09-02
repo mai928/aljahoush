@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { navlinks } from '../../../data'
 import logo from '../../assets/logo2.png'
@@ -15,6 +15,20 @@ const NavBar = () => {
     const [toggle, setToggle] = useState(false)
     const [showmenuIcon, setshowmenuIcon] = useState(false)
 
+    const sideRef =useRef(null)
+
+    const handleClickOutSide =(e)=>{
+        if(toggle && sideRef.current && !sideRef.current.contains(e.target)){
+            setToggle(false)
+        }
+    }
+
+    useEffect(()=>{
+      document.addEventListener('mousedown',handleClickOutSide)
+      return()=>{
+        document.removeEventListener('mousedown',handleClickOutSide)
+      }
+    },[toggle])
 
 
     
@@ -110,17 +124,17 @@ const NavBar = () => {
 
             {/* slideBar */}
 
-            <div>
+            <div ref={sideRef}>
                 <div className={`sidebar ${toggle ? "open" : ""}`}>
                     <div className="p-10">
                         <div className="flex justify-between items-end mb-10">
                             <Link href={'/'}><img alt="logo" width={110} height={'auto'} src={logo} /></Link>
-                            <h1
+                            {/* <h1
                                 className="cursor-pointer p-1 px-3 rounded-full bg-primary_color font-semibold text-white-300"
                                 onClick={() => setToggle(false)}
                             >
                                 x
-                            </h1>
+                            </h1> */}
                         </div>
 
                         <ul>

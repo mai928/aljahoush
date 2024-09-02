@@ -177,7 +177,7 @@ const Footer = () => {
 
 
                 <div className='lg:w-[25%] mt-10 lg:mt-0'>
-                    <h3 className='font-Outfit text-3xl text-white mb-6'>Explore</h3>
+                    <h3 className='font-Outfit text-3xl text-white mb-6'>{t("Explore")}</h3>
                     <ul>
                         {
                             navlinks.map((link) => (
@@ -191,7 +191,7 @@ const Footer = () => {
                 </div>
 
                 <div className='mt-10 lg:mt-0 '>
-                    <h3 className='font-Outfit text-3xl text-white mb-2 lg:mb-6'>Contact Info</h3>
+                    <h3 className='font-Outfit text-3xl text-white mb-2 lg:mb-6'>{t("Contact Info")}</h3>
                     <div className=''>
                         {/* address */}
                         <div className='flex items-center justify-center lg:justify-start gap-3 py-3'>
