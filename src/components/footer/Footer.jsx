@@ -7,9 +7,82 @@ import { useTranslation } from 'react-i18next'
 import { fetchApi, fetchPostApi } from '../../utils/api'
 
 const Footer = () => {
-    const { t, i18n } = useTranslation()
     const [socialData, setData] = useState('')
     const [settingsData, setSettings] = useState('')
+
+
+    const { t, i18n } = useTranslation()
+
+    const [formData, setFormData] = useState({
+        email: '',
+
+    });
+    const [responseMessage, setResponseMessage] = useState('');
+
+    const ResponseMessage = ({ message }) => {
+        if (!message) return null;
+
+        return (
+            <div className="mt-6 text-center">
+                <p className={`text-lg ${message === 'Message sent successfully!' ? 'text-white text-2xl' : 'text-red-500'}`}>
+                    {message}
+                </p>
+            </div>
+        );
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+
+        try {
+
+
+            const myHeaders = new Headers();
+            myHeaders.append("Accept-Language", i18n.language);
+            myHeaders.append("Cookie", "laravel_session=6oM3FFaszfcS2bV3nWtBQrSNpkdvu3BvQxhRc6h0");
+
+
+            const formdata = new FormData();
+            formdata.append("email", formData.email);
+
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow",
+            };
+            const response = await fetch('http://api.aljahoush.com/api/submit-subscriptions', requestOptions);
+
+            const result = await response.json();
+            console.log(result)
+
+            if (response.status && result.data) {
+                setResponseMessage('Message sent successfully!');
+                setFormData({
+                    email: '',
+                });
+            } else {
+                setResponseMessage('Failed to send message. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setResponseMessage('An error occurred. Please try again.', error);
+        }
+
+        setTimeout(() => {
+            setResponseMessage('')
+        }, 3000)
+    };
 
 
 
@@ -53,11 +126,19 @@ const Footer = () => {
                 <div className='lg:w-1/3 '>
                     <img alt='footer-logo' className=' w-52  m-auto lg:m-0 filter brightness-0 invert-[1]' src={settingsData?.logo} />
                     <p className='text-white font-Outfit my-4 l:my-10'>{settingsData?.footer}</p>
-                    <form className='relative flex items-center'>
-                        <input className='py-5 px-10 w-full rounded-full  block' placeholder='Your Email' />
-                        <button className='bg-primary_color  rounded-full px-4 py-3 font-bold font-Outfit absolute end-2  hover:bg-secondary_color hover:text-white'>Go</button>
+
+
+                    <form onSubmit={handleSubmit} className='relative flex items-center'>
+                        <input type='email'
+                            id='email'
+                            name='email'
+                            value={formData.email} onChange={handleChange} className='py-5 px-5 lg:px-10 w-full rounded-full  block' placeholder={t('Your Email')} />
+                        <button type='submit' className='bg-primary_color  rounded-full px-4 py-3 font-bold font-Outfit absolute end-2  hover:bg-secondary_color hover:text-white'>{t("Go")}</button>
 
                     </form>
+                    <div className='my-2'>
+                        <ResponseMessage message={responseMessage} />
+                    </div>
                     {/* social media */}
                     <div className='flex flex-wrap gap-10 mt-10  z-50 '>
                         {/* whasup */}
@@ -118,10 +199,10 @@ const Footer = () => {
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width={20} fill='white' viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" /></svg>
                             </Link>
-                            <div className='block'>
+                            <div className='block w-[400px]'>
                                 {
                                     settingsData.addresses?.map((item) => (
-                                        <p className='text-white font-Outfit py-1'>{item}</p>
+                                        <p className='text-white font-Outfit py-1'>{t(item)}</p>
 
                                     ))
                                 }
@@ -133,9 +214,10 @@ const Footer = () => {
                             <Link className=' flex items-center  px-3 py-3 bg-opacity-5 bg-white  border-dashed border-slate-400 border-[1px] rounded-full'>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" fill='white' width={20} viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" /></svg>                            </Link>
-                            <div className=''> {
+                                <div className='block w-[400px]'>
+                                {
                                 settingsData.emails?.map((item) => (
-                                    <Link to={`mailto:${item}`} className='block text-white font-Outfit my-2'>{item}</Link>
+                                    <Link to={`mailto:${item}`} className='block text-white font-Outfit my-2'>{t(item)}</Link>
 
                                 ))
                             }
@@ -150,10 +232,11 @@ const Footer = () => {
 
                                 <svg xmlns="http://www.w3.org/2000/svg" fill='white' width={20} viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" /></svg>                            </Link>
 
-                            <div className=''>
+                                <div className='block w-[400px]'>
+
                                 {
                                     settingsData.phones?.map((item) => (
-                                        <Link to={`tel:${item}`} className='block text-white font-Outfit py-1'>{item}</Link>
+                                        <Link to={`tel:${item}`} className='block text-white font-Outfit py-1'>{t(item)}</Link>
 
                                     ))
                                 }

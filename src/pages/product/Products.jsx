@@ -35,9 +35,9 @@ const Products = () => {
     }));
   return (
     <section className='px-10 lg:px-20 py-10 bg-gray-100'>
-    <div className='text-center mb-10'><p className='text-secondary_color   font-IntoLightTw0 text-2xl lg:text-3xl'>Our Product </p>
+    <div className='text-center mb-10'><p className='text-secondary_color   font-IntoLightTw0 text-2xl lg:text-3xl'>{t("Our Product")}</p>
         <h3 className=" text-2xl lg:text-5xl  lg:leading-[3.5rem] font-bold my-5 font-Outfit ">
-            Explore Awesome Gallery</h3>
+            {t("Explore Awesome Gallery")}</h3>
 
     </div>
 

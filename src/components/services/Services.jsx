@@ -92,12 +92,12 @@ const Services = () => {
                     <div className="flex  justify-center items-center mb-3">
 
                         <p className="text-secondary_color   font-IntoLightTw0 text-2xl lg:text-3xl">
-                            {("OUR Services")}
+                            {t("OUR Services")}
                         </p>
                     </div>
 
                     <h3 className=" text-2xl lg:text-5xl lg:leading-[3.5rem] font-bold my-5 font-Outfit">
-                        {" Currently we are"} <br />{"selling organic food"}
+                        {t("Currently we are")} <br /> {i18n.language === 'ar'?(''):("selling organic food")}
                     </h3>
                 </div>
 
@@ -139,7 +139,7 @@ const Services = () => {
 
                 </Swiper>
                 <div className="flex justify-center mt-10">
-                    <Link to={'/services'} className={'w-36  md:w-48 lg:w-56 py-3 font-Outfit font-bold text-xl bg-primary_color hover:bg-secondary_color hover:text-white rounded-full text-center'} >{"Show More"}</Link>
+                    <Link to={'/services'} className={'w-36  md:w-48 lg:w-56 py-3 font-Outfit font-bold text-xl bg-primary_color hover:bg-secondary_color hover:text-white rounded-full text-center'} >{t("Show More")}</Link>
                 </div>
             </div>
         </section>

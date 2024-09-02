@@ -19,13 +19,13 @@ const Videos = () => {
 
 
     return (
-        <section className='px-10 py-20'>
-            <div className='text-center mb-10'><p className='text-secondary_color   font-IntoLightTw0 text-2xl lg:text-3xl'>Our Videos </p>
+        <section className='px-5 py-20'>
+            <div className='text-center mb-10'><p className='text-secondary_color   font-IntoLightTw0 text-2xl lg:text-3xl'>{t("Our Videos")}</p>
                 <h3 className=" text-2xl lg:text-5xl lg:leading-[3.5rem] font-bold my-5 font-Outfit ">
-                    Explore Awesome Videos</h3>
+                    {t("Explore Awesome Videos")}</h3>
 
             </div> 
-                       <div className='block lg:flex flex-wrap justify-center gap-6' >
+                       <div className='block  lg:flex flex-wrap justify-center gap-6' >
                 {
                     videoSources?.slice(0,2)?.map((vid, index) => (
                         <video
@@ -35,13 +35,13 @@ const Videos = () => {
                             autoplay={false}
                             loop={false}
                             muted={false}
-                            className='w-[500px] h-[280px]  object-cover'
+                            className='w-[500px] h-[280px]  object-cover mt-10 lg:mt-0'
                         />
                     ))
                 }
             </div>
             <div className='m-auto text-center my-10 '>
-                <Link to={'/videos'} className=' bg-primary_color hover:bg-secondary_color hover:text-white  text-xl  px-14 py-4 rounded-full font-Outfit font-semibold '>Show More</Link>
+                <Link to={'/videos'} className=' bg-primary_color hover:bg-secondary_color hover:text-white  text-xl  px-14 py-4 rounded-full font-Outfit font-semibold '>{t("Show More")}</Link>
 
             </div>
         </section>

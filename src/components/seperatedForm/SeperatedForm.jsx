@@ -46,10 +46,10 @@ const SeperatedForm = () => {
 
 
       const formdata = new FormData();
-      formdata.append("name", "");
-      formdata.append("phone", "");
-      formdata.append("email", "");
-      formdata.append("message", "");
+      formdata.append("name", formData.name);
+      formdata.append("phone", formData.phone);
+      formdata.append("email", formData.email);
+      formdata.append("message", formData.message);
 
       const requestOptions = {
         method: "POST",
@@ -65,10 +65,10 @@ const SeperatedForm = () => {
       if (response.status && result.data) {
         setResponseMessage('Message sent successfully!');
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          message: ''
+          name:'',
+          email:'',
+          phone:'',
+          message:''
         });
       } else {
         setResponseMessage('Failed to send message. Please try again.');
@@ -93,7 +93,7 @@ const SeperatedForm = () => {
         onChange={handleChange}
         required
         className="mt-5 w-full rounded-md border border-s-4 border-slate-300 border-s-primary_color bg-white py-3 pl-5 pr-3 shadow-sm  placeholder:text-start placeholder:italic placeholder:text-slate-400 focus:border-primary-400 focus:outline-none focus:ring-1 focus:ring-primary-400 sm:text-sm"
-        placeholder={("Name")}
+        placeholder={t("Name")}
       />
       <input
         type='email'
@@ -103,7 +103,7 @@ const SeperatedForm = () => {
         onChange={handleChange}
         required
         className="mt-5 block w-full rounded-md border border-s-4 border-slate-300 border-s-primary_color bg-white py-3 pl-5 pr-3 shadow-sm placeholder:text-start placeholder:italic placeholder:text-slate-400 focus:border-primary-400 focus:outline-none focus:ring-1 focus:ring-primary-400 sm:text-sm"
-        placeholder={("Email Address")}
+        placeholder={t("Email Address")}
       />
       <input
         type='number'
@@ -113,7 +113,7 @@ const SeperatedForm = () => {
         onChange={handleChange}
         required
         className="mt-5 block w-full rounded-md border border-s-4 border-slate-300 border-s-primary_color bg-white py-3 pl-5 pr-3 shadow-sm placeholder:text-start placeholder:italic placeholder:text-slate-400 focus:border-primary-400 focus:outline-none focus:ring-1 focus:ring-primary-400 sm:text-sm"
-        placeholder={("Phone Number")}
+        placeholder={t("Phone Number")}
       />
       <textarea
         id='message'
@@ -123,13 +123,13 @@ const SeperatedForm = () => {
         required
         className="col mt-5 block w-full rounded-md border border-s-4 border-slate-300 border-s-primary_color bg-white pb-10 pl-5 pr-3 pt-2 shadow-sm placeholder:text-start placeholder:italic placeholder:text-slate-400 focus:border-primary-400 focus:outline-none focus:ring-1 focus:ring-primary-400 sm:text-sm "
         cols={5}
-        placeholder={("Your Message")}
+        placeholder={t("Your Message")}
       />
 
       <div className='flex justify-center'>
         <button
-          className={`hover:bg-secondary_color hover:text-white font-bold uppercase py-3 my-5
-         bg-primary_color font-Outfit  p-1 text-center m-auto  w-64  md:w-48 lg:w-[38rem] rounded-lg `} type='submit'>send</button>
+          className={`hover:bg-secondary_color hover:text-white text-xl font-bold uppercase py-3 my-5
+         bg-primary_color font-Outfit  p-1 text-center m-auto  w-64  md:w-48 lg:w-[38rem] rounded-lg `} type='submit'>{t("send")}</button>
       </div>
 
       <div>
