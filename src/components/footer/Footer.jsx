@@ -48,7 +48,7 @@ const Footer = () => {
 
             const myHeaders = new Headers();
             myHeaders.append("Accept-Language", i18n.language);
-            myHeaders.append("Cookie", "laravel_session=6oM3FFaszfcS2bV3nWtBQrSNpkdvu3BvQxhRc6h0");
+            // myHeaders.append("Cookie", "laravel_session=6oM3FFaszfcS2bV3nWtBQrSNpkdvu3BvQxhRc6h0");
 
 
             const formdata = new FormData();
