@@ -50,6 +50,19 @@ function App() {
     fetchIcon();
   }, []);
 
+  useEffect(() => {
+    const handleLanguageChange = (lng) => {
+        console.log('Language changed to:', lng);
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+
+    // Clean up the event listener on component unmount
+    return () => {
+        i18n.off('languageChanged', handleLanguageChange);
+    };
+}, []);
+
 
   useEffect(() => {
     document.body.setAttribute('dir', i18n.language === 'ar' ? 'rtl' : 'ltr')

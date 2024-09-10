@@ -61,7 +61,7 @@ const Footer = () => {
                 body: formdata,
                 redirect: "follow",
             };
-            const response = await fetch('http://api.aljahoush.com/api/submit-subscriptions', requestOptions);
+            const response = await fetch('https://api.aljahoush.com/api/submit-subscriptions', requestOptions);
 
             const result = await response.json();
             console.log(result)

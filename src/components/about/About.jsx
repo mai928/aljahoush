@@ -5,10 +5,11 @@ import img3 from '../../assets/3.png'
 import { fetchApi } from '../../utils/api'
 import { useTranslation } from 'react-i18next'
 import DOMPurify from 'dompurify'
+import i18n from '../../languages/i18n'
 
 const About = () => {
 
-    const { t, i18n } = useTranslation()
+    const { t } = useTranslation()
     const [About, setData] = useState()
 
     useEffect(() => {

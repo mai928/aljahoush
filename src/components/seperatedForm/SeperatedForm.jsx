@@ -57,7 +57,7 @@ const SeperatedForm = () => {
         body:formdata,
         redirect: "follow",
       };
-      const response = await fetch('http://api.aljahoush.com/api/contact-submit', requestOptions);
+      const response = await fetch('https://api.aljahoush.com/api/contact-submit', requestOptions);
 
       const result = await response.json();
       console.log(result)

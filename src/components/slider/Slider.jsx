@@ -11,13 +11,14 @@ import { useTranslation } from 'react-i18next';
 import { fetchApi } from '../../utils/api';
 import DOMPurify from 'dompurify'
 import Loader from "react-js-loader";
+import i18n from '../../languages/i18n';
 
 
 
 
 const Slider = () => {
 
-    const { t, i18n } = useTranslation()
+    const { t } = useTranslation()
 
     const [show, setShow] = useState(false)
     const [loading, SetLoading] = useState(true)
@@ -26,18 +27,25 @@ const Slider = () => {
     const [sliderData, setData] = useState([])
 
   
-
     useEffect(() => {
         const fetchDataSlider = async () => {
-            const res = await fetchApi('api/sliders', i18n.language)
-            const slideData = res?.data
-            setData(slideData)
-            SetLoading(false)
-        }
+            try {
+                const res = await fetchApi('api/sliders', i18n.language);
+                console.log("Fetched data:", res?.data); // Debugging line
+                setData(res?.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                SetLoading(false);
+            }
+        };
 
-        fetchDataSlider()
-    }, [i18n.language])
+        fetchDataSlider();
+    }, [i18n.language]);
 
+    if (!i18n.isInitialized) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <section className='relative z-0'

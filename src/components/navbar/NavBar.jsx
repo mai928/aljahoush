@@ -5,11 +5,12 @@ import logo from '../../assets/logo2.png'
 import LanguageSwitcher from '../../languages/LanguageSwitcher'
 import { useTranslation } from 'react-i18next'
 import { fetchApi } from '../../utils/api'
+import i18n from '../../languages/i18n'
 
 
 const NavBar = () => {
 
-    const { t  ,i18n} = useTranslation()
+    const { t } = useTranslation()
     const [settingsData, setSettings] = useState('')
 
     const [toggle, setToggle] = useState(false)
@@ -44,7 +45,7 @@ const NavBar = () => {
         setting()
 
 
-    }, [i18n.language])
+    }, [])
 
 
     console.log(settingsData?.phones)
