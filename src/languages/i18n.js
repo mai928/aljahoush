@@ -20,11 +20,17 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
+    lng: 'en', // Set default language explicitly
     fallbackLng: 'en',
     debug: true,
     interpolation: {
       escapeValue: false,
     },
+  });
+
+
+  i18n.on('languageChanged', (lng) => {
+    console.log('Language changed to:', lng);
   });
 
 export default i18n;

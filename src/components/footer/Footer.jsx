@@ -48,7 +48,7 @@ const Footer = () => {
 
             const myHeaders = new Headers();
             myHeaders.append("Accept-Language", i18n.language);
-            myHeaders.append("Cookie", "laravel_session=6oM3FFaszfcS2bV3nWtBQrSNpkdvu3BvQxhRc6h0");
+            // myHeaders.append("Cookie", "laravel_session=6oM3FFaszfcS2bV3nWtBQrSNpkdvu3BvQxhRc6h0");
 
 
             const formdata = new FormData();
@@ -61,7 +61,7 @@ const Footer = () => {
                 body: formdata,
                 redirect: "follow",
             };
-            const response = await fetch('http://api.aljahoush.com/api/submit-subscriptions', requestOptions);
+            const response = await fetch('https://api.aljahoush.com/api/submit-subscriptions', requestOptions);
 
             const result = await response.json();
             console.log(result)
@@ -177,7 +177,7 @@ const Footer = () => {
 
 
                 <div className='lg:w-[25%] mt-10 lg:mt-0'>
-                    <h3 className='font-Outfit text-3xl text-white mb-6'>Explore</h3>
+                    <h3 className='font-Outfit text-3xl text-white mb-6'>{t("Explore")}</h3>
                     <ul>
                         {
                             navlinks.map((link) => (
@@ -191,7 +191,7 @@ const Footer = () => {
                 </div>
 
                 <div className='mt-10 lg:mt-0 '>
-                    <h3 className='font-Outfit text-3xl text-white mb-2 lg:mb-6'>Contact Info</h3>
+                    <h3 className='font-Outfit text-3xl text-white mb-2 lg:mb-6'>{t("Contact Info")}</h3>
                     <div className=''>
                         {/* address */}
                         <div className='flex items-center justify-center lg:justify-start gap-3 py-3'>
