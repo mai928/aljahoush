@@ -18,37 +18,37 @@ function App() {
 
   const { i18n } = useTranslation()
 
-  useEffect(() => {
-    // Function to fetch the icon URL from the API
-    const fetchIcon = async () => {
-      try {
-        const response = await fetch('https://api.aljahoush.com/api/settings');
-        const data = await response.json();
+  // useEffect(() => {
+  //   // Function to fetch the icon URL from the API
+  //   const fetchIcon = async () => {
+  //     try {
+  //       const response = await fetch('https://api.aljahoush.com/api/settings');
+  //       const data = await response.json();
 
-        // Assuming the API returns a URL to the icon
-        const iconUrl = data.data.favicon;
+  //       // Assuming the API returns a URL to the icon
+  //       const iconUrl = data.data.favicon;
 
-        console.log(iconUrl)
+  //       console.log(iconUrl)
 
-        // Update the favicon
-        const favicon = document.getElementById('favicon');
-        if (favicon) {
-          favicon.href = iconUrl;
-        } else {
-          // Create a new favicon element if it doesn't exist
-          const newFavicon = document.createElement('link');
-          newFavicon.id = 'favicon';
-          newFavicon.rel = 'icon';
-          newFavicon.href = iconUrl;
-          document.head.appendChild(newFavicon);
-        }
-      } catch (error) {
-        console.error('Error fetching the icon:', error);
-      }
-    };
+  //       // Update the favicon
+  //       const favicon = document.getElementById('favicon');
+  //       if (favicon) {
+  //         favicon.href = iconUrl;
+  //       } else {
+  //         // Create a new favicon element if it doesn't exist
+  //         const newFavicon = document.createElement('link');
+  //         newFavicon.id = 'favicon';
+  //         newFavicon.rel = 'icon';
+  //         newFavicon.href = iconUrl;
+  //         document.head.appendChild(newFavicon);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching the icon:', error);
+  //     }
+  //   };
 
-    fetchIcon();
-  }, []);
+  //   fetchIcon();
+  // }, []);
 
   useEffect(() => {
     const handleLanguageChange = (lng) => {
